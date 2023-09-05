@@ -1,0 +1,8 @@
+name: rqcloud
+channels:
+ - conda-forge
+dependencies:
+ - rq
+ - redis-py
+ - cloudpickle
+ - dask
