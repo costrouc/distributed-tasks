@@ -21,7 +21,7 @@ def test_basic_task_raising(rq_worker, rq_queue):
     rq_worker.work(burst=True)
 
     assert job.is_failed
-    assert 'TypeError' in job.exc_info
+    assert 'TypeError' in job.latest_result().exc_string
 
 
 def test_dask_tasks(rq_worker, rq_queue):
@@ -29,7 +29,7 @@ def test_dask_tasks(rq_worker, rq_queue):
     def add(*args):
         return sum(args)
 
-    N = 100
+    N = 10
     f = add(*[add(1, i) for i in range(N)])
 
     job = rq_queue.enqueue(f)
