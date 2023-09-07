@@ -6,3 +6,5 @@ dependencies:
  - redis-py
  - cloudpickle
  - dask
+ - pytest
+ - docker-compose
