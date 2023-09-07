@@ -1,0 +1,25 @@
+name: Test
+
+on:
+  push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/checkout@master
+
+      - uses: mamba-org/setup-micromamba@v1
+        with:
+          environment-file: environment.yaml
+
+      - name: Start service
+        shell: bash -el {0}
+        run: |
+          docker-compose up --build -d
+
+      - name: Tests
+        shell: bash -el {0}
+        run: |
+          pytest -v
