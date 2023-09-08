@@ -18,3 +18,11 @@ def rq_worker(rq_queue, redis_connection):
 @pytest.fixture
 def rq_queue(redis_connection):
     yield Queue(connection=redis_connection)
+
+
+@pytest.fixture(scope='session')
+def celery_config():
+    return {
+        'broker_url': 'redis://localhost:6379',
+        'result_backend': 'redis://localhost:6379'
+    }

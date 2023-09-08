@@ -4,7 +4,9 @@ channels:
 dependencies:
  - rq
  - redis-py
+ - celery
  - cloudpickle
  - dask
  - pytest
+ - pytest-celery
  - docker-compose
